@@ -1,15 +1,17 @@
 {
-  "name": "storybook-addon-kit",
+  "name": "storybook-addon-console-controls",
   "version": "0.0.0",
-  "description": "everything you need to build a Storybook addon",
+  "description": "interact with component dynamically from the console or testing code.",
   "keywords": [
-    "storybook-addons"
+    "storybook-addons",
+    "controls",
+    "testing"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook-addon-kit"
+    "url": "https://github.com/YehudaGold/storybook-addon-code-controls.git"
   },
-  "author": "package-author",
+  "author": "yehuda goldberg <hvusvd@gmail.com>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -21,7 +23,6 @@
     "*.d.ts"
   ],
   "scripts": {
-    "postinstall": "node scripts/welcome.js",
     "clean": "rimraf ./dist",
     "buildBabel": "concurrently \"yarn buildBabel:cjs\" \"yarn buildBabel:esm\"",
     "buildBabel:cjs": "babel ./src -d ./dist/cjs --extensions \".js,.jsx,.ts,.tsx\"",
@@ -80,9 +81,17 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Addon Kit",
+    "displayName": "storybook-addon-code-controls",
     "supportedFrameworks": [
-      "supported-frameworks"
+      "react",
+      "vue",
+      "angular",
+      "web-components",
+      "ember",
+      "html",
+      "svelte",
+      "preact",
+      "react-native"
     ],
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
   }
