@@ -1,31 +1,24 @@
 import React, { useCallback } from "react";
-import { useGlobals } from "@storybook/api";
+import { useGlobals, useStorybookApi, useArgs } from "@storybook/api";
 import { Icons, IconButton } from "@storybook/components";
 import { TOOL_ID } from "./constants";
 
 export const Tool = () => {
-  const [{ myAddon }, updateGlobals] = useGlobals();
+  const a = useStorybookApi();
 
-  const toggleMyTool = useCallback(
-    () =>
-      updateGlobals({
-        myAddon: myAddon ? undefined : true,
-      }),
-    [myAddon]
-  );
+  const [args, updateArgs, resetArgs] = useArgs();
+  const [globals, updateGlobals] = useGlobals();
 
-  return (
-    <IconButton
-      key={TOOL_ID}
-      active={myAddon}
-      title="Enable my addon"
-      onClick={toggleMyTool}
-    >
-      {/*
-        Checkout https://next--storybookjs.netlify.app/official-storybook/?path=/story/basics-icon--labels
-        for the full list of icons
-      */}
-      <Icons icon="lightning" />
-    </IconButton>
-  );
+  window.__storybook = {
+    api: a,
+    updateGlobals,
+    args,
+    // context,
+    globals,
+    // parameter,
+    resetArgs,
+    updateArgs,
+  };
+
+  return null;
 };
